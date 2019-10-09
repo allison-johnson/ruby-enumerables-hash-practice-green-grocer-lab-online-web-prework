@@ -21,7 +21,12 @@ end
 def apply_coupons(cart, coupons)
   coupons.each do |coupon|
     item_name = coupon[:item]
-    if cart[item_name]
+    item_name_w_coupon = "#{item_name} W/COUPON"
+    
+    if cart[item_name_w_coupon]
+      
+    
+    elsif cart[item_name]
       if cart[item_name][:count] >= coupon[:num]
         coupon_item_name = "#{item_name} W/COUPON"
         coupon_item = {}
@@ -30,8 +35,8 @@ def apply_coupons(cart, coupons)
         coupon_item[:count] = coupon[:num]
         cart[coupon_item_name] = coupon_item
         cart[item_name][:count] -= coupon[:num]
-      end #end if
-    end #end if
+      end #end if count is enough
+    end #end if item (or couponned item) is in cart
   end #end each
   cart
 end
