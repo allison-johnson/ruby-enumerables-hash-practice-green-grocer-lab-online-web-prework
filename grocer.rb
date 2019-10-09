@@ -50,8 +50,12 @@ def apply_clearance(cart)
       attribute_hash[:price] = (attribute_hash[:price] * 0.8).round(2)
     end #end if
   end #end do
+  cart
 end #end method
 
 def checkout(cart, coupons)
-  final_cart = consolidate_cart(cart)
+  cart_one = consolidate_cart(cart)
+  cart_two = apply_coupons(cart_two, coupons)
+  cart_final = apply_clearance(cart_two)
+  
 end
